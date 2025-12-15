@@ -25,9 +25,21 @@ jobs:
           vuln-type: 'os,library'
           format: 'table'
 
+      - name: Install venv for Semgrep
+        run: |
+          sudo apt install python3.12-venv
+
+      - name: Create venv for Semgrep
+        run: |
+          python3 -m venv ./venv
+
+      - name: Activate Semgrep venv
+        run: |
+          source ./venv/bin/activate
+
       - name: Install Semgrep
         run: |
-          sudo pip install semgrep
+          pip install semgrep
 
       - name: Run Semgrep SAST
         run: |
